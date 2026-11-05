@@ -20,7 +20,12 @@ export const servico = {
   base: '',
 };
 
-const TEMPO_LIMITE = 4000;
+/**
+ * Generoso de proposito: a API publica roda no plano gratuito do Render, que
+ * hiberna depois de um tempo sem uso e leva ate ~50s para acordar na primeira
+ * chamada. Um limite curto jogaria o app em modo demonstracao sem necessidade.
+ */
+const TEMPO_LIMITE = 20000;
 
 // ---------------------------------------------------------------------------
 // Descoberta do endereco da API

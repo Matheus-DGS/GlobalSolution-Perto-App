@@ -11,9 +11,11 @@ Solução integrada **app mobile + plataforma web** para a Global Solution **Cit
 
 | Nome completo | RM |
 | --- | --- |
-| Matheus Dias Gomes Silva | `RM a preencher` |
+| Matheus Dias Gomes Silva | RM563021 |
 
 > Trabalho desenvolvido individualmente.
+
+**Repositório:** <https://github.com/Matheus-DGS/GlobalSolution-Perto-App>
 
 ---
 
@@ -257,20 +259,39 @@ Sem servidor nenhum, o app abre em modo demonstração com os dados de `mobile/a
 
 ## Deploy
 
-- **Plataforma web publicada em:** `https://<preencher-apos-o-deploy>`
+- **Plataforma web publicada em:** <https://globalsolution-perto-app.onrender.com>
 - **Vídeo-pitch:** `https://<preencher-apos-a-gravacao>`
 
-Como o servidor Node também entrega a pasta `web/`, o deploy mais simples é publicar o
-repositório inteiro num serviço que rode Node (Render, Railway, Fly.io):
+| Endereço público | O que é |
+| --- | --- |
+| <https://globalsolution-perto-app.onrender.com> | Página pública do bairro |
+| <https://globalsolution-perto-app.onrender.com/painel.html> | Painel do território (UBS) |
+| <https://globalsolution-perto-app.onrender.com/cadastro.html> | Cadastro em etapas |
+| <https://globalsolution-perto-app.onrender.com/api/estado> | API consumida pelo app |
+
+O app mobile já aponta para essa mesma API (`extra.apiUrl` em `mobile/app.json`), então
+**celular e navegador compartilham os dados pela internet**, sem precisar estar na mesma rede.
+
+### Configuração usada no Render
+
+Como o servidor Node também entrega a pasta `web/`, um único Web Service publica painel e API
+na mesma origem:
 
 | Campo | Valor |
 | --- | --- |
-| Build command | *(vazio)* |
-| Start command | `node server/src/server.js` |
+| Repositório | público, sem conectar conta do GitHub |
+| Root Directory | `server` |
+| Build Command | `npm install` |
+| Start Command | `npm start` |
+| Instância | Free (US$ 0/mês) |
 | Porta | lida de `process.env.PORT` |
 
-Para um deploy estático (GitHub Pages, Vercel, Netlify), publique a pasta `web/` e preencha
-`apiBaseUrl` em `web/js/config.js` com a URL pública da API.
+> **Atenção na apresentação:** o plano gratuito hiberna após um tempo sem uso, e a primeira
+> requisição pode levar até ~50 segundos. Abra o painel web alguns minutos antes de começar a
+> demonstração para "acordar" o serviço.
+
+Para um deploy estático (GitHub Pages, Vercel, Netlify), publique a pasta `web/`: ela já tem a
+URL da API em `alternativas`, dentro de `web/js/config.js`.
 
 ---
 

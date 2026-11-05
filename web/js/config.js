@@ -9,7 +9,13 @@
  *   de exemplo de web/dados/demo.json, avisando o usuario na tela.
  */
 window.PERTO_CONFIG = {
+  // Vazio de proposito: no deploy do Render e no `npm start` local a API vive
+  // na mesma origem da pagina, entao nao ha nada para configurar.
   apiBaseUrl: '',
-  alternativas: ['http://localhost:3333'],
+
+  // Tentadas em ordem se a mesma origem nao responder. Cobre o caso de a pasta
+  // web/ ser publicada separadamente (GitHub Pages, Vercel, Netlify).
+  alternativas: ['http://localhost:3333', 'https://globalsolution-perto-app.onrender.com'],
+
   nomeTerritorio: 'UBS Sacoma - microarea 3',
 };

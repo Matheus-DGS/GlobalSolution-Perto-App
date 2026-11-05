@@ -52,7 +52,9 @@ function candidatos() {
   return [...new Set(lista.map((u) => String(u).replace(/\/+$/, '')))];
 }
 
-async function tentar(base, ms = 2500) {
+// 7s: a API publica roda no plano gratuito do Render, que hiberna sem uso e
+// pode levar alguns segundos para responder a primeira chamada.
+async function tentar(base, ms = 7000) {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), ms);
   try {

@@ -27,8 +27,8 @@
       "favicon": "./assets/favicon.png"
     },
     "extra": {
-      "_comentario": "Deixe apiUrl vazio para o app descobrir sozinho o servidor (inclusive o IP do computador que roda o Expo). Preencha com a URL publica da API em um deploy real.",
-      "apiUrl": ""
+      "_comentario": "API publica do projeto. Para desenvolver contra o servidor local, deixe apiUrl vazio: o app passa a descobrir sozinho o IP do computador que roda o Expo. Tambem da para trocar o endereco na aba Ajustes do proprio app.",
+      "apiUrl": "https://globalsolution-perto-app.onrender.com"
     }
   }
 }
