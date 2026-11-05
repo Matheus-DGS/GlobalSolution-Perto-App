@@ -1,0 +1,157 @@
+/* ==========================================================================
+   Cadastro em etapas
+   ========================================================================== */
+
+.passos { margin: 1.8rem 0 1.2rem; }
+
+.passos__pista {
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: var(--papel-2);
+  border: 1px solid var(--linha);
+  overflow: hidden;
+}
+.passos__preenche {
+  height: 100%;
+  width: 25%;
+  border-radius: var(--r-pill);
+  background: linear-gradient(90deg, var(--primaria), var(--acento));
+  transition: width var(--t-lenta) var(--curva);
+}
+
+.passos__lista {
+  list-style: none;
+  padding: 0;
+  margin: 0.9rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.2rem;
+}
+.passo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--tinta-3);
+}
+.passo__num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--papel-2);
+  border: 1.5px solid var(--linha-forte);
+  color: var(--tinta-2);
+  font-size: 0.82rem;
+  font-weight: 800;
+  flex: none;
+  transition: background var(--t-media) var(--curva), color var(--t-media) var(--curva),
+    transform var(--t-media) var(--curva-mola);
+}
+.passo[aria-current='step'] { color: var(--primaria-escura); }
+.passo[aria-current='step'] .passo__num {
+  background: var(--primaria);
+  border-color: var(--primaria-escura);
+  color: #fff;
+  transform: scale(1.12);
+}
+.passo--feito { color: var(--ok); }
+.passo--feito .passo__num { background: var(--ok); border-color: var(--ok); color: #fff; }
+
+/* --------------------------------------------------------------------------
+   Etapas
+   -------------------------------------------------------------------------- */
+.etapa h2 { font-size: 1.3rem; }
+.etapa h2:focus-visible { outline-offset: 6px; }
+.etapa[hidden] { display: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-movimento='off']) .etapa:not([hidden]) {
+    animation: etapa-entra var(--t-media) var(--curva) both;
+  }
+  html:not([data-movimento='off']) .etapa[data-direcao='tras'] {
+    animation-name: etapa-entra-tras;
+  }
+}
+@keyframes etapa-entra {
+  from { opacity: 0; transform: translateX(18px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes etapa-entra-tras {
+  from { opacity: 0; transform: translateX(-18px); }
+  to { opacity: 1; transform: none; }
+}
+
+.etapa__navegacao {
+  display: flex;
+  gap: 0.7rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-top: 1.6rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--linha);
+}
+.etapa__navegacao #btn-voltar { margin-right: auto; }
+
+/* --------------------------------------------------------------------------
+   Rede de apoio
+   -------------------------------------------------------------------------- */
+.apoiador {
+  border: 1.5px solid var(--linha);
+  border-radius: var(--r-md);
+  padding: 1rem 1.1rem;
+  margin-bottom: 0.9rem;
+  background: var(--papel-2);
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-movimento='off']) .apoiador { animation: entra-lista var(--t-media) var(--curva-mola) both; }
+}
+.apoiador__topo { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; margin-bottom: 0.6rem; }
+.apoiador__topo h3 { margin: 0; font-size: 1rem; }
+.apoiador__remover {
+  min-height: 40px;
+  padding: 0.3rem 0.8rem;
+  border: 1.5px solid var(--linha-forte);
+  background: var(--papel);
+  color: var(--tinta-2);
+  border-radius: var(--r-pill);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.apoiador__remover:hover { background: var(--critico-bg); color: var(--critico); border-color: currentColor; }
+
+.rede-vazia {
+  border: 1.5px dashed var(--linha-forte);
+  border-radius: var(--r-md);
+  padding: 1.3rem;
+  text-align: center;
+  color: var(--tinta-2);
+  margin-bottom: 0.9rem;
+}
+
+/* --------------------------------------------------------------------------
+   Revisao
+   -------------------------------------------------------------------------- */
+.revisao-bloco {
+  border: 1.5px solid var(--linha);
+  border-radius: var(--r-md);
+  padding: 1rem 1.1rem;
+  margin-bottom: 0.9rem;
+}
+.revisao-bloco h3 { margin: 0 0 0.6rem; font-size: 1rem; display: flex; align-items: center; gap: 0.4rem; }
+.revisao-bloco h3 button {
+  margin-left: auto;
+  background: none;
+  border: 0;
+  color: var(--primaria-escura);
+  font: inherit;
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: underline;
+  min-height: 40px;
+  padding: 0 0.4rem;
+}
+.revisao-bloco h3 button:hover { color: var(--acento); }

@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "Perto",
+    "slug": "perto",
+    "description": "Rede de cuidado de bairro para pessoas idosas que moram sozinhas.",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "primaryColor": "#0F6B63",
+    "backgroundColor": "#FBF7F2",
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "CFBundleDisplayName": "Perto"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E3F1EF",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "_comentario": "Deixe apiUrl vazio para o app descobrir sozinho o servidor (inclusive o IP do computador que roda o Expo). Preencha com a URL publica da API em um deploy real.",
+      "apiUrl": ""
+    }
+  }
+}

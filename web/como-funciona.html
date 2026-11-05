@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Como funciona - Perto</title>
+<meta name="description" content="As tres camadas da rede de cuidado, a jornada de cada pessoa envolvida e o papel do app mobile e da plataforma web na solucao Perto.">
+<meta name="theme-color" content="#0f6b63">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Nunito+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/publico.css">
+<script src="js/config.js"></script>
+</head>
+<body>
+
+<a class="pular-para-conteudo" href="#conteudo">Pular para o conteudo</a>
+
+<header class="topo">
+  <div class="envelope topo__interno">
+    <a class="marca" href="./" aria-label="Perto - pagina inicial">
+      <span class="marca__selo" aria-hidden="true"><svg><use href="#i-perto"></use></svg></span>
+      <span>Perto<small>rede de cuidado de bairro</small></span>
+    </a>
+    <nav class="topo__nav" aria-label="Navegacao principal">
+      <a class="topo__link" href="./">Inicio</a>
+      <a class="topo__link" href="como-funciona.html" aria-current="page">Como funciona</a>
+      <a class="topo__link" href="painel.html">Painel do territorio</a>
+      <a class="topo__link" href="cadastro.html">Cadastrar pessoa</a>
+      <div class="a11y" role="group" aria-label="Acessibilidade">
+        <button class="a11y__botao" type="button" data-a11y="diminuir" aria-label="Diminuir o tamanho do texto">
+          <svg aria-hidden="true"><use href="#i-menos"></use></svg>
+        </button>
+        <button class="a11y__botao" type="button" data-a11y="aumentar" aria-label="Aumentar o tamanho do texto">
+          A<svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-mais"></use></svg>
+        </button>
+        <button class="a11y__botao" type="button" data-a11y="contraste" aria-pressed="false" aria-label="Alternar alto contraste">
+          <svg aria-hidden="true"><use href="#i-contraste"></use></svg>
+        </button>
+        <button class="a11y__botao" type="button" data-a11y="movimento" aria-pressed="false" aria-label="Reduzir animacoes">
+          <svg aria-hidden="true"><use href="#i-movimento"></use></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <section class="secao" aria-labelledby="t-camadas">
+    <div class="envelope">
+      <p class="cartao__rotulo">A solucao</p>
+      <h1 id="t-camadas">Tres camadas que se acionam sozinhas</h1>
+      <p style="font-size:1.08rem;color:var(--tinta-2)">
+        O Perto nao espera o pedido de socorro. Ele observa a rotina combinada com a propria
+        pessoa e aciona quem esta mais perto quando essa rotina se rompe.
+      </p>
+
+      <ol class="camadas">
+        <li class="camada camada--1" data-revelar>
+          <span class="camada__selo" aria-hidden="true">1</span>
+          <div>
+            <h3>Um toque por dia, dentro da janela combinada</h3>
+            <p>
+              No app, a pessoa aperta um botao grande que ocupa quase a tela inteira:
+              <strong>Estou bem</strong>. A janela e combinada na visita do agente de saude
+              (por exemplo, das 7h as 11h), porque a rotina de cada pessoa e diferente.
+              Quem quiser pode responder tambem <strong>mais ou menos</strong> ou
+              <strong>preciso de ajuda</strong> &mdash; e isso muda o que acontece depois.
+            </p>
+            <p class="apoio"><span class="etiqueta-app">App</span> &nbsp;Funciona sem internet: o toque fica numa fila e sobe quando a conexao volta.</p>
+          </div>
+        </li>
+        <li class="camada camada--2" data-revelar>
+          <span class="camada__selo" aria-hidden="true">2</span>
+          <div>
+            <h3>Sem o toque, a rede do quarteirao e chamada</h3>
+            <p>
+              Passada a janela, o sistema cria um alerta de atencao e avisa a rede de apoio
+              cadastrada &mdash; vizinhos, familiares e voluntarios &mdash; comecando por quem mora
+              mais perto. Quem puder ir toca em <strong>Vou verificar</strong>, e as outras
+              pessoas param de ser cobradas: ninguem duplica esforco, ninguem fica achando
+              que alguem ja foi.
+            </p>
+            <p class="apoio"><span class="etiqueta-app">App</span> &nbsp;Alerta com endereco, telefone, observacoes de acesso e o que fazer ao chegar.</p>
+          </div>
+        </li>
+        <li class="camada camada--3" data-revelar>
+          <span class="camada__selo" aria-hidden="true">3</span>
+          <div>
+            <h3>Se ninguem assume em 45 minutos, vira caso da UBS</h3>
+            <p>
+              O alerta sobe de nivel automaticamente e entra na fila de triagem da equipe de
+              saude, com o motivo da escalada registrado. A equipe liga, aciona a vizinhanca
+              pelo painel ou agenda uma visita no mesmo dia. Nada depende de alguem lembrar
+              de acompanhar.
+            </p>
+            <p class="apoio"><span class="etiqueta-web">Web</span> &nbsp;Fila ordenada por gravidade e tempo de espera, atualizada em tempo real.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="secao painel-publico" aria-labelledby="t-plataformas">
+    <div class="envelope">
+      <p class="cartao__rotulo">Divisao de papeis</p>
+      <h2 id="t-plataformas">Por que duas plataformas</h2>
+      <p>
+        O app e a web nao mostram a mesma coisa em tamanhos diferentes: elas atendem pessoas
+        diferentes, em situacoes diferentes. O app esta na mao de quem vive a situacao; a web
+        esta na mesa de quem coordena o territorio.
+      </p>
+
+      <div class="plataformas" style="margin-top:1.5rem">
+        <article class="cartao plataforma" data-revelar>
+          <h3><svg aria-hidden="true"><use href="#i-telefone"></use></svg> App mobile (React Native)</h3>
+          <p class="apoio">Para a pessoa acompanhada e para a rede de apoio. Usado em casa, na rua, com pressa, com pouca bateria e conexao instavel.</p>
+          <ul>
+            <li><strong>Check-in diario</strong> num botao de 200 pixels, com confirmacao visual e tatil.</li>
+            <li><strong>SOS</strong> que exige manter pressionado por 2 segundos, para evitar toque acidental.</li>
+            <li><strong>Pedidos do dia a dia</strong>: remedio, mercado, companhia, transporte.</li>
+            <li><strong>Alertas da rede</strong> com endereco, telefone e botao de ligar direto.</li>
+            <li><strong>Fila offline</strong>: tudo que foi feito sem internet sobe depois, sem perder nada.</li>
+            <li><strong>Tamanho de texto e alto contraste</strong> dentro do proprio app.</li>
+          </ul>
+        </article>
+
+        <article class="cartao plataforma plataforma--web" data-revelar>
+          <h3><svg aria-hidden="true"><use href="#i-grafico"></use></svg> Plataforma web</h3>
+          <p class="apoio">Para a equipe da UBS, a associacao de bairro e qualquer cidadao. Usada sentada, em tela grande, com varias pessoas em vista ao mesmo tempo.</p>
+          <ul>
+            <li><strong>Fila de triagem</strong> em tempo real, ordenada por gravidade e espera.</li>
+            <li><strong>Mapa do territorio</strong> com as casas e o nivel de atencao de cada uma.</li>
+            <li><strong>Cadastro em etapas</strong> da pessoa e da rede de apoio, com a janela de check-in.</li>
+            <li><strong>Avisos para o bairro</strong> (onda de calor, vacina) entregues no app de todos.</li>
+            <li><strong>Agenda de visitas</strong> que aparece no app da pessoa visitada.</li>
+            <li><strong>Relatorio e dados abertos</strong> para prestar contas ao bairro.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" aria-labelledby="t-jornadas">
+    <div class="envelope">
+      <p class="cartao__rotulo">Foco no usuario</p>
+      <h2 id="t-jornadas">A jornada de cada pessoa</h2>
+      <p>Tres pessoas, tres entradas diferentes na solucao. A coluna da direita mostra onde cada etapa acontece.</p>
+
+      <div class="jornada cartao" style="margin-top:1.5rem" data-revelar>
+        <table>
+          <caption>Dona Ivone, 78 anos, mora sozinha no Sacoma &mdash; a cidada beneficiada</caption>
+          <thead>
+            <tr><th scope="col">Etapa</th><th scope="col">O que ela quer</th><th scope="col">O que acontece</th><th scope="col">Onde</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Entrada</th>
+              <td>Nao ser um peso para a filha que mora longe</td>
+              <td>A agente de saude cadastra Ivone na visita, combina a janela das 7h as 11h e cadastra Jorge (vizinho) e Marlene (filha)</td>
+              <td><span class="etiqueta-web">Web</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Rotina</th>
+              <td>Avisar que esta bem sem depender de ninguem</td>
+              <td>Um toque no botao verde. Vibra, mostra o check e a tela diz quem foi avisado</td>
+              <td><span class="etiqueta-app">App</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Dificuldade</th>
+              <td>O celular ficou sem bateria e ela nao percebeu</td>
+              <td>Nao houve check-in. O alerta vai para a rede; Jorge assume e toca a campainha</td>
+              <td><span class="etiqueta-app">App</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Necessidade</th>
+              <td>Precisa de pao e leite, mas chove e ela usa bengala</td>
+              <td>Abre um pedido de mercado. Jorge aceita e marca como entregue</td>
+              <td><span class="etiqueta-app">App</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Desfecho</th>
+              <td>Ser acompanhada de perto sem perder autonomia</td>
+              <td>Ivone ve a proxima visita no card de hoje e sabe o nome de quem vai bater na porta</td>
+              <td><span class="etiqueta-app">App</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="jornada cartao" style="margin-top:1.2rem" data-revelar>
+        <table>
+          <caption>Jorge, 34 anos, vizinho de quarteirao &mdash; a rede de apoio</caption>
+          <thead>
+            <tr><th scope="col">Etapa</th><th scope="col">O que ele quer</th><th scope="col">O que acontece</th><th scope="col">Onde</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Entrada</th>
+              <td>Ajudar, mas sem virar responsavel por tudo</td>
+              <td>Aceita o convite da agente e escolhe de quem quer receber alertas</td>
+              <td><span class="etiqueta-app">App</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Acionamento</th>
+              <td>Saber quando realmente precisam dele</td>
+              <td>Recebe o alerta so quando falta o check-in ou ha um pedido; ve a distancia e o que fazer</td>
+              <td><span class="etiqueta-app">App</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Dificuldade</th>
+              <td>Nao sabe se outra pessoa ja foi</td>
+              <td>Ao tocar em "vou verificar", o alerta muda de estado para todo mundo e o painel registra</td>
+              <td><span class="etiqueta-app">App</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Desfecho</th>
+              <td>Fechar o caso e seguir a vida</td>
+              <td>Registra o que encontrou. O relato entra no historico que a UBS le na proxima visita</td>
+              <td><span class="etiqueta-app">App</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="jornada cartao" style="margin-top:1.2rem" data-revelar>
+        <table>
+          <caption>Cleo, agente comunitaria de saude, 140 domicilios &mdash; a coordenacao</caption>
+          <thead>
+            <tr><th scope="col">Etapa</th><th scope="col">O que ela quer</th><th scope="col">O que acontece</th><th scope="col">Onde</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Entrada</th>
+              <td>Saber por onde comecar o dia</td>
+              <td>Abre o painel e ve a fila de triagem com quem esta esperando e por quanto tempo</td>
+              <td><span class="etiqueta-web">Web</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Decisao</th>
+              <td>Priorizar com criterio, nao por memoria</td>
+              <td>Cada pessoa mostra o nivel de atencao e os motivos em texto: idade, condicoes, dias sem check-in, tamanho da rede</td>
+              <td><span class="etiqueta-web">Web</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Acao</th>
+              <td>Resolver sem sair da tela</td>
+              <td>Assume o caso, liga, agenda a visita e publica avisos do bairro &mdash; tudo chega no app</td>
+              <td><span class="etiqueta-web">Web</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Dificuldade</th>
+              <td>Cobrir ausencias e prestar contas</td>
+              <td>O relatorio mostra cobertura, tempo medio de resposta e quanto a rede resolveu sem a UBS</td>
+              <td><span class="etiqueta-web">Web</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao painel-publico" aria-labelledby="t-integracao">
+    <div class="envelope">
+      <p class="cartao__rotulo">Integracao</p>
+      <h2 id="t-integracao">O que uma plataforma faz aparece na outra</h2>
+      <p>
+        As duas partes conversam com a mesma API REST, escrita em Node.js. O painel web
+        tambem escuta um fluxo de eventos (<code>Server-Sent Events</code>), por isso a fila de
+        triagem muda sozinha na tela quando alguem usa o celular. O app consulta a API e guarda
+        uma fila local para funcionar sem internet.
+      </p>
+      <div class="grade grade--2" style="margin-top:1.4rem">
+        <div class="cartao" data-revelar>
+          <h3>Do app para a web</h3>
+          <ul>
+            <li>Check-in feito &rarr; o status da pessoa muda no painel e o alerta do dia se fecha</li>
+            <li>SOS acionado &rarr; entra no topo da fila de triagem como caso critico</li>
+            <li>"Vou verificar" &rarr; o painel mostra quem assumiu e desde quando</li>
+            <li>Pedido de ajuda &rarr; aparece na lista de pedidos abertos do territorio</li>
+          </ul>
+        </div>
+        <div class="cartao" data-revelar>
+          <h3>Da web para o app</h3>
+          <ul>
+            <li>Cadastro de pessoa e rede &rarr; ela passa a existir no app e a receber alertas</li>
+            <li>Janela de check-in alterada &rarr; muda o horario cobrado no app</li>
+            <li>Visita agendada &rarr; aparece no card "hoje" com nome e horario</li>
+            <li>Aviso do bairro &rarr; banner no topo do app de todas as pessoas do territorio</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" aria-labelledby="t-decisoes">
+    <div class="envelope">
+      <p class="cartao__rotulo">Decisoes de projeto</p>
+      <h2 id="t-decisoes">Movimento e acessibilidade com funcao</h2>
+      <div class="grade grade--2" style="margin-top:1.4rem">
+        <div class="cartao" data-revelar>
+          <h3>Onde o movimento ajuda</h3>
+          <ul>
+            <li><strong>Confirmacao do check-in</strong>: anel que expande e check desenhado dizem "registrado" sem exigir leitura.</li>
+            <li><strong>SOS com barra de 2 segundos</strong>: o movimento mostra que da tempo de desistir.</li>
+            <li><strong>Alertas novos entram deslizando</strong> na fila, com um realce que apaga: o olho encontra a mudanca.</li>
+            <li><strong>Numeros que sobem</strong> indicam que o dado foi recalculado agora.</li>
+            <li><strong>Banner offline</strong> desce com a contagem da fila: estado do sistema sempre visivel.</li>
+            <li><strong>Pulso so no risco alto</strong>: movimento e reservado para o que e urgente.</li>
+          </ul>
+        </div>
+        <div class="cartao" data-revelar>
+          <h3>Acessibilidade desde o inicio</h3>
+          <ul>
+            <li>Contraste de texto acima de 4,5:1 em todas as combinacoes, com tema de alto contraste a um clique.</li>
+            <li>Tres tamanhos de texto no cabecalho; o layout e em <code>rem</code> e nao quebra ao crescer.</li>
+            <li>Nenhuma informacao depende so de cor: todo estado tem icone e texto.</li>
+            <li>HTML semantico, navegacao completa por teclado e foco sempre visivel.</li>
+            <li>Rotulos descritivos em todos os icones, campos e botoes, pensando em leitor de tela.</li>
+            <li>Botao para desligar animacoes, alem de respeitar <code>prefers-reduced-motion</code> do sistema.</li>
+            <li>No app, area de toque minima de 48 pixels e espacamento generoso entre acoes.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="linha" style="margin-top:1.6rem">
+        <a class="botao" href="painel.html"><svg aria-hidden="true"><use href="#i-grafico"></use></svg>Abrir o painel do territorio</a>
+        <a class="botao botao--secundario" href="index.html#indicar">Indicar alguem</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="envelope">
+    <p>Perto &middot; Global Solution CitizenTech &middot; FIAP. Projeto academico, dados ficticios.</p>
+    <p><a href="./">Voltar ao inicio</a></p>
+  </div>
+</footer>
+
+<script type="module">
+  import { injetarSprite, iniciarAcessibilidade, iniciarRevelacao } from './js/ui.js';
+  injetarSprite();
+  iniciarAcessibilidade();
+  iniciarRevelacao();
+</script>
+</body>
+</html>

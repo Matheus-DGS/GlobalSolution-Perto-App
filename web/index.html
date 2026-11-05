@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perto - rede de cuidado de bairro para quem mora sozinho</title>
+<meta name="description" content="O Perto liga pessoas idosas que moram sozinhas aos vizinhos e a equipe da UBS. Um toque no app avisa que esta tudo bem; a ausencia desse toque aciona a rede do quarteirao.">
+<meta name="theme-color" content="#0f6b63">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Nunito+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/publico.css">
+<script src="js/config.js"></script>
+</head>
+<body>
+
+<a class="pular-para-conteudo" href="#conteudo">Pular para o conteudo</a>
+
+<header class="topo">
+  <div class="envelope topo__interno">
+    <a class="marca" href="./" aria-label="Perto - pagina inicial">
+      <span class="marca__selo" aria-hidden="true"><svg><use href="#i-perto"></use></svg></span>
+      <span>Perto<small>rede de cuidado de bairro</small></span>
+    </a>
+
+    <nav class="topo__nav" aria-label="Navegacao principal">
+      <a class="topo__link" href="./" aria-current="page">Inicio</a>
+      <a class="topo__link" href="como-funciona.html">Como funciona</a>
+      <a class="topo__link" href="painel.html">Painel do territorio</a>
+      <a class="topo__link" href="cadastro.html">Cadastrar pessoa</a>
+
+      <div class="a11y" role="group" aria-label="Acessibilidade">
+        <button class="a11y__botao" type="button" data-a11y="diminuir" aria-label="Diminuir o tamanho do texto">
+          <svg aria-hidden="true"><use href="#i-menos"></use></svg>
+        </button>
+        <button class="a11y__botao" type="button" data-a11y="aumentar" aria-label="Aumentar o tamanho do texto">
+          A<svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-mais"></use></svg>
+        </button>
+        <button class="a11y__botao" type="button" data-a11y="contraste" aria-pressed="false" aria-label="Alternar alto contraste">
+          <svg aria-hidden="true"><use href="#i-contraste"></use></svg>
+        </button>
+        <button class="a11y__botao" type="button" data-a11y="movimento" aria-pressed="false" aria-label="Reduzir animacoes">
+          <svg aria-hidden="true"><use href="#i-movimento"></use></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- ==================== ABERTURA ==================== -->
+  <section class="heroi" aria-labelledby="t-heroi">
+    <div class="envelope heroi__grade">
+      <div class="heroi__texto">
+        <p class="heroi__olho">
+          <svg aria-hidden="true"><use href="#i-pino"></use></svg>
+          UBS Sacoma &middot; microarea 3 &middot; Sao Paulo
+        </p>
+        <h1 id="t-heroi">Ninguem deveria passar dias sem que alguem perceba.</h1>
+        <p class="heroi__linha">
+          No Brasil, <strong>mais de 5,6 milhoes de pessoas com 60 anos ou mais moram sozinhas</strong>.
+          Entre uma visita e outra do agente de saude podem passar 30 dias. O Perto transforma
+          o quarteirao em rede: um toque por dia diz que esta tudo bem &mdash; e a falta desse
+          toque chama quem esta mais perto.
+        </p>
+        <div class="linha heroi__acoes">
+          <a class="botao" href="painel.html">
+            <svg aria-hidden="true"><use href="#i-grafico"></use></svg>
+            Ver o painel do territorio
+          </a>
+          <a class="botao botao--secundario" href="#indicar">
+            <svg aria-hidden="true"><use href="#i-coracao"></use></svg>
+            Indicar alguem que mora sozinho
+          </a>
+        </div>
+        <p class="heroi__nota">
+          <svg aria-hidden="true"><use href="#i-info"></use></svg>
+          Projeto academico com dados ficticios. O app acompanha a pessoa e a rede de apoio;
+          esta plataforma web atende a equipe de saude e o bairro.
+        </p>
+      </div>
+
+      <!-- Diagrama da escalada: o movimento conta a historia na ordem em que ela acontece -->
+      <figure class="heroi__figura" data-revelar>
+        <figcaption class="so-leitor">
+          Diagrama em tres etapas: a pessoa confirma no aplicativo que esta bem; se nao confirmar
+          dentro da janela combinada, a rede de apoio do quarteirao e avisada; se ninguem assumir
+          em 45 minutos, o caso vai para a fila da equipe da UBS.
+        </figcaption>
+        <svg class="escada" viewBox="0 0 420 320" role="img" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="g-fundo" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#e3f1ef"/><stop offset="1" stop-color="#fdeee2"/>
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="420" height="320" rx="26" fill="url(#g-fundo)"/>
+
+          <!-- trilhos -->
+          <path class="escada__trilho" d="M96 92 H250" />
+          <path class="escada__trilho escada__trilho--2" d="M310 120 V200" />
+          <path class="escada__trilho escada__trilho--3" d="M284 228 H150" />
+
+          <!-- 1. celular com o botao de check-in -->
+          <g class="escada__etapa escada__etapa--1">
+            <rect x="30" y="44" width="66" height="112" rx="14" fill="#fff" stroke="#0f6b63" stroke-width="2.5"/>
+            <circle class="escada__pulso" cx="63" cy="100" r="20" fill="#0f6b63" opacity=".16"/>
+            <circle cx="63" cy="100" r="15" fill="#0f6b63"/>
+            <path d="M56 100.5 61 105.5 70.5 95.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="63" y="140" text-anchor="middle" font-size="11" font-weight="800" fill="#0a4a44">Estou bem</text>
+          </g>
+
+          <!-- 2. vizinhos -->
+          <g class="escada__etapa escada__etapa--2">
+            <circle cx="268" cy="92" r="30" fill="#fff" stroke="#c2560f" stroke-width="2.5"/>
+            <circle cx="261" cy="85" r="7" fill="#c2560f"/>
+            <path d="M250 104c2-7 6-10 11-10s9 3 11 10" fill="#c2560f"/>
+            <circle cx="278" cy="88" r="5.5" fill="#c2560f" opacity=".55"/>
+            <path d="M272 102c1.5-5 4-7 7-7s5 2 6 6" fill="#c2560f" opacity=".55"/>
+            <text x="268" y="142" text-anchor="middle" font-size="11" font-weight="800" fill="#8a3c08">Rede do quarteirao</text>
+          </g>
+
+          <!-- 3. UBS -->
+          <g class="escada__etapa escada__etapa--3">
+            <rect x="88" y="196" width="140" height="68" rx="14" fill="#fff" stroke="#a81e16" stroke-width="2.5"/>
+            <path d="M158 206 l16 12 v30 h-32 v-30 z" fill="#a81e16" opacity=".16"/>
+            <path d="M158 216v18M149 225h18" stroke="#a81e16" stroke-width="3.5" stroke-linecap="round"/>
+            <text x="158" y="282" text-anchor="middle" font-size="11" font-weight="800" fill="#7d1510">Equipe da UBS</text>
+          </g>
+
+          <text x="172" y="84" font-size="10.5" font-weight="700" fill="#45585e">sem check-in</text>
+          <text x="318" y="166" font-size="10.5" font-weight="700" fill="#45585e">45 min</text>
+          <text x="196" y="221" font-size="10.5" font-weight="700" fill="#45585e">escalada</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ==================== TRANSPARENCIA ==================== -->
+  <section class="secao painel-publico" aria-labelledby="t-numeros">
+    <div class="envelope">
+      <div class="linha linha--entre" style="align-items:flex-end;margin-bottom:1.5rem">
+        <div>
+          <p class="cartao__rotulo">Dados abertos do territorio</p>
+          <h2 id="t-numeros">Como esta o bairro hoje</h2>
+        </div>
+        <p class="pulso-vivo" id="estado-conexao" role="status">
+          <span class="pulso-vivo__ponto" aria-hidden="true"></span>
+          <span id="estado-conexao-texto">Conectando...</span>
+        </p>
+      </div>
+
+      <div class="grade grade--4" id="numeros">
+        <div class="cartao numero" data-revelar>
+          <p class="cartao__rotulo">Pessoas acompanhadas</p>
+          <p class="numero__valor esqueleto" data-numero="pessoasMonitoradas">0</p>
+          <p class="numero__nota">Moram sozinhas e aceitaram participar</p>
+        </div>
+        <div class="cartao numero" data-revelar>
+          <p class="cartao__rotulo">Confirmaram que estao bem hoje</p>
+          <p class="numero__valor esqueleto" data-numero="coberturaHoje" data-sufixo="%">0</p>
+          <p class="numero__nota"><span data-texto="checkinsHoje">--</span></p>
+        </div>
+        <div class="cartao numero" data-revelar>
+          <p class="cartao__rotulo">Casos resolvidos pela rede</p>
+          <p class="numero__valor esqueleto" data-numero="percentualResolvidoPelaRede" data-sufixo="%">0</p>
+          <p class="numero__nota">Sem precisar acionar a UBS</p>
+        </div>
+        <div class="cartao numero" data-revelar>
+          <p class="cartao__rotulo">Tempo medio de resposta</p>
+          <p class="numero__valor esqueleto" data-texto="tempoMedio">--</p>
+          <p class="numero__nota">Do alerta ate alguem assumir</p>
+        </div>
+      </div>
+
+      <div class="grade grade--2" style="margin-top:1.5rem">
+        <div class="cartao" data-revelar>
+          <h3>Avisos do bairro</h3>
+          <p class="apoio">Publicados pela equipe da UBS no painel e entregues no app de todo mundo.</p>
+          <ul class="avisos" id="avisos-publicos">
+            <li class="esqueleto" style="height:4rem"></li>
+          </ul>
+        </div>
+        <div class="cartao" data-revelar>
+          <h3>Pessoas por nivel de atencao</h3>
+          <p class="apoio">O nivel combina idade, condicoes de saude, historico de check-in e tamanho da rede de apoio.</p>
+          <ul class="barras" id="barras-risco">
+            <li class="esqueleto" style="height:3rem"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROBLEMA ==================== -->
+  <section class="secao" id="problema" aria-labelledby="t-problema">
+    <div class="envelope">
+      <p class="cartao__rotulo">O problema</p>
+      <h2 id="t-problema">O risco nao esta na doenca, esta no tempo sem contato</h2>
+      <div class="grade grade--3" style="margin-top:1.5rem">
+        <article class="cartao" data-revelar>
+          <p class="destaque">5,6 mi</p>
+          <p>pessoas com 60 anos ou mais vivem sozinhas no Brasil, numero que cresce a cada censo.</p>
+        </article>
+        <article class="cartao" data-revelar>
+          <p class="destaque">1x por mes</p>
+          <p>e a frequencia minima de visita domiciliar prevista para o agente comunitario de saude. Entre uma visita e outra, ninguem sabe o que acontece.</p>
+        </article>
+        <article class="cartao" data-revelar>
+          <p class="destaque">1 em cada 3</p>
+          <p>pessoas idosas cai ao menos uma vez por ano. Numa queda, o tempo ate alguem chegar muda o desfecho.</p>
+        </article>
+      </div>
+      <div class="nota nota--info" style="margin-top:1.5rem" data-revelar>
+        <svg aria-hidden="true"><use href="#i-info"></use></svg>
+        <p>
+          <strong>Por que escolhemos este problema</strong>
+          Ja existem botoes de emergencia, mas eles dependem da pessoa conseguir pedir ajuda.
+          O Perto inverte a logica: a ausencia de um sinal simples ja e o pedido de ajuda,
+          e quem responde primeiro e quem mora a 80 metros, nao um servico distante.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== INDICAR ALGUEM ==================== -->
+  <section class="secao indicar" id="indicar" aria-labelledby="t-indicar">
+    <div class="envelope envelope--estreito">
+      <p class="cartao__rotulo">Participe</p>
+      <h2 id="t-indicar">Conhece alguem que mora sozinho?</h2>
+      <p>
+        Qualquer pessoa do bairro pode indicar. A equipe da UBS recebe a indicacao no painel,
+        confirma com uma visita e so entao a pessoa entra na rede. Nada e publicado:
+        a indicacao vai direto para a equipe de saude.
+      </p>
+
+      <form class="cartao cartao--sobreposto formulario" id="form-indicacao" novalidate>
+        <div class="grade grade--2">
+          <p class="campo">
+            <label class="campo__rotulo" for="i-nome">Nome da pessoa <span class="obrigatorio">(obrigatorio)</span></label>
+            <input id="i-nome" name="nome" type="text" autocomplete="off" required aria-describedby="i-nome-erro">
+            <span class="campo__erro" id="i-nome-erro" hidden></span>
+          </p>
+          <p class="campo">
+            <label class="campo__rotulo" for="i-idade">Idade aproximada <span class="obrigatorio">(obrigatorio)</span></label>
+            <input id="i-idade" name="idade" type="number" min="50" max="120" inputmode="numeric" required aria-describedby="i-idade-erro">
+            <span class="campo__erro" id="i-idade-erro" hidden></span>
+          </p>
+        </div>
+
+        <p class="campo">
+          <label class="campo__rotulo" for="i-endereco">Rua e numero</label>
+          <span class="campo__dica" id="i-endereco-dica">Se nao souber o numero, descreva a referencia mais proxima.</span>
+          <input id="i-endereco" name="endereco" type="text" autocomplete="off" aria-describedby="i-endereco-dica">
+        </p>
+
+        <fieldset>
+          <legend>Seus dados</legend>
+          <div class="grade grade--2">
+            <p class="campo">
+              <label class="campo__rotulo" for="i-seu-nome">Seu nome <span class="obrigatorio">(obrigatorio)</span></label>
+              <input id="i-seu-nome" name="seuNome" type="text" autocomplete="name" required aria-describedby="i-seu-nome-erro">
+              <span class="campo__erro" id="i-seu-nome-erro" hidden></span>
+            </p>
+            <p class="campo">
+              <label class="campo__rotulo" for="i-seu-telefone">Seu telefone (com DDD)</label>
+              <input id="i-seu-telefone" name="seuTelefone" type="tel" autocomplete="tel" placeholder="(11) 90000-0000">
+            </p>
+          </div>
+          <p class="campo" style="margin-bottom:0">
+            <label class="campo__rotulo" for="i-relacao">Sua relacao com a pessoa</label>
+            <select id="i-relacao" name="relacao">
+              <option value="Vizinho">Vizinho ou vizinha</option>
+              <option value="Familiar">Familiar</option>
+              <option value="Comerciante do bairro">Comerciante do bairro</option>
+              <option value="Voluntario da associacao">Voluntario de associacao ou igreja</option>
+              <option value="Agente de saude">Agente de saude</option>
+            </select>
+          </p>
+        </fieldset>
+
+        <label class="marcar">
+          <input type="checkbox" id="i-consentimento" name="consentimento" required>
+          <span>A pessoa sabe desta indicacao e concorda em ser procurada pela equipe da UBS.</span>
+        </label>
+        <span class="campo__erro" id="i-consentimento-erro" hidden></span>
+
+        <button class="botao botao--largo" type="submit" style="margin-top:1rem" id="btn-indicacao">
+          <svg aria-hidden="true"><use href="#i-seta-direita"></use></svg>
+          Enviar indicacao para a UBS
+        </button>
+        <p class="apoio" style="margin:0.8rem 0 0">
+          Ao enviar, a pessoa entra no painel com a observacao de que veio de indicacao do bairro
+          e com o nivel de atencao calculado automaticamente.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ==================== ODS ==================== -->
+  <section class="secao ods" aria-labelledby="t-ods">
+    <div class="envelope">
+      <p class="cartao__rotulo">Agenda 2030</p>
+      <h2 id="t-ods">Objetivos de Desenvolvimento Sustentavel</h2>
+      <div class="grade grade--3" style="margin-top:1.5rem">
+        <article class="cartao ods__cartao" data-revelar>
+          <p class="ods__numero">ODS 3</p>
+          <h3>Saude e bem-estar</h3>
+          <p>Meta 3.4 e 3.8: a deteccao precoce de intercorrencias e o acompanhamento continuo de pessoas com doencas cronicas, dentro da atencao basica.</p>
+        </article>
+        <article class="cartao ods__cartao" data-revelar>
+          <p class="ods__numero">ODS 11</p>
+          <h3>Cidades e comunidades sustentaveis</h3>
+          <p>Meta 11.3 e 11.7: comunidade participando da gestao do proprio territorio, com atencao a pessoas idosas e com deficiencia.</p>
+        </article>
+        <article class="cartao ods__cartao" data-revelar>
+          <p class="ods__numero">ODS 10</p>
+          <h3>Reducao das desigualdades</h3>
+          <p>Meta 10.2: a tecnologia roda num celular simples, com texto grande, funciona sem internet estavel e nao exige nenhum equipamento pago.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="envelope">
+    <div class="grade grade--2">
+      <div>
+        <p class="marca" style="font-size:1.1rem">
+          <span class="marca__selo" aria-hidden="true"><svg><use href="#i-perto"></use></svg></span>
+          Perto
+        </p>
+        <p>Global Solution CitizenTech &middot; FIAP. Projeto academico, dados ficticios.</p>
+      </div>
+      <nav aria-label="Links do rodape">
+        <ul style="list-style:none;padding:0;margin:0;display:grid;gap:.4rem">
+          <li><a href="como-funciona.html">Como funciona</a></li>
+          <li><a href="painel.html">Painel do territorio</a></li>
+          <li><a href="cadastro.html">Cadastrar pessoa</a></li>
+          <li><a href="#indicar">Indicar alguem</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="js/publico.js"></script>
+</body>
+</html>

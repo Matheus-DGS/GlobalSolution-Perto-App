@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadastrar pessoa - Perto</title>
+<meta name="description" content="Cadastro em quatro etapas de uma pessoa acompanhada e da sua rede de apoio, feito pela equipe da UBS durante a visita domiciliar.">
+<meta name="theme-color" content="#0f6b63">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Nunito+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/publico.css">
+<link rel="stylesheet" href="css/painel.css">
+<link rel="stylesheet" href="css/cadastro.css">
+<script src="js/config.js"></script>
+</head>
+<body>
+
+<a class="pular-para-conteudo" href="#conteudo">Pular para o conteudo</a>
+
+<header class="topo">
+  <div class="envelope topo__interno">
+    <a class="marca" href="./" aria-label="Perto - pagina inicial">
+      <span class="marca__selo" aria-hidden="true"><svg><use href="#i-perto"></use></svg></span>
+      <span>Perto<small>cadastro no territorio</small></span>
+    </a>
+    <nav class="topo__nav" aria-label="Navegacao principal">
+      <a class="topo__link" href="./">Inicio</a>
+      <a class="topo__link" href="como-funciona.html">Como funciona</a>
+      <a class="topo__link" href="painel.html">Painel do territorio</a>
+      <a class="topo__link" href="cadastro.html" aria-current="page">Cadastrar pessoa</a>
+      <div class="a11y" role="group" aria-label="Acessibilidade">
+        <button class="a11y__botao" type="button" data-a11y="diminuir" aria-label="Diminuir o tamanho do texto">
+          <svg aria-hidden="true"><use href="#i-menos"></use></svg>
+        </button>
+        <button class="a11y__botao" type="button" data-a11y="aumentar" aria-label="Aumentar o tamanho do texto">
+          A<svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-mais"></use></svg>
+        </button>
+        <button class="a11y__botao" type="button" data-a11y="contraste" aria-pressed="false" aria-label="Alternar alto contraste">
+          <svg aria-hidden="true"><use href="#i-contraste"></use></svg>
+        </button>
+        <button class="a11y__botao" type="button" data-a11y="movimento" aria-pressed="false" aria-label="Reduzir animacoes">
+          <svg aria-hidden="true"><use href="#i-movimento"></use></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo" class="painel">
+  <div class="envelope envelope--estreito">
+
+    <p class="cartao__rotulo">UBS Sacoma &middot; visita domiciliar</p>
+    <h1 style="margin-bottom:.3rem">Cadastrar pessoa acompanhada</h1>
+    <p class="apoio" style="max-width:62ch">
+      Este cadastro e feito junto com a pessoa, na visita. Tudo aqui vira a rotina que o app
+      vai acompanhar: o horario combinado, quem sera avisado e o que a equipe precisa saber
+      para chegar bem na porta.
+    </p>
+
+    <!-- Progresso: barra + lista de etapas, ambas com texto -->
+    <div class="passos" role="group" aria-labelledby="passos-titulo">
+      <p class="so-leitor" id="passos-titulo">Progresso do cadastro</p>
+      <div class="passos__pista" aria-hidden="true"><div class="passos__preenche" id="passos-preenche"></div></div>
+      <ol class="passos__lista" id="passos-lista">
+        <li class="passo" aria-current="step"><span class="passo__num">1</span> Quem e a pessoa</li>
+        <li class="passo"><span class="passo__num">2</span> Saude e rotina</li>
+        <li class="passo"><span class="passo__num">3</span> Rede de apoio</li>
+        <li class="passo"><span class="passo__num">4</span> Conferir</li>
+      </ol>
+      <p class="so-leitor" role="status" id="anuncio-passo">Etapa 1 de 4: quem e a pessoa.</p>
+    </div>
+
+    <form class="cartao cartao--sobreposto" id="form-cadastro" novalidate>
+
+      <!-- ======== ETAPA 1 ======== -->
+      <section class="etapa" data-etapa="1" aria-labelledby="t-e1">
+        <h2 id="t-e1" tabindex="-1">Quem e a pessoa</h2>
+
+        <div class="grade grade--2">
+          <p class="campo">
+            <label class="campo__rotulo" for="c-nome">Nome completo <span class="obrigatorio">(obrigatorio)</span></label>
+            <input id="c-nome" name="nome" type="text" autocomplete="off" required aria-describedby="c-nome-erro">
+            <span class="campo__erro" id="c-nome-erro" hidden></span>
+          </p>
+          <p class="campo">
+            <label class="campo__rotulo" for="c-apelido">Como gosta de ser chamada</label>
+            <span class="campo__dica" id="c-apelido-dica">E este nome que aparece no app.</span>
+            <input id="c-apelido" name="apelido" type="text" autocomplete="off" aria-describedby="c-apelido-dica">
+          </p>
+        </div>
+
+        <div class="grade grade--2">
+          <p class="campo">
+            <label class="campo__rotulo" for="c-idade">Idade <span class="obrigatorio">(obrigatorio)</span></label>
+            <input id="c-idade" name="idade" type="number" min="18" max="120" inputmode="numeric" required aria-describedby="c-idade-erro">
+            <span class="campo__erro" id="c-idade-erro" hidden></span>
+          </p>
+          <p class="campo">
+            <label class="campo__rotulo" for="c-telefone">Telefone</label>
+            <input id="c-telefone" name="telefone" type="tel" autocomplete="tel" placeholder="(11) 90000-0000">
+          </p>
+        </div>
+
+        <p class="campo">
+          <label class="campo__rotulo" for="c-endereco">Endereco <span class="obrigatorio">(obrigatorio)</span></label>
+          <input id="c-endereco" name="endereco" type="text" autocomplete="street-address" required aria-describedby="c-endereco-erro">
+          <span class="campo__erro" id="c-endereco-erro" hidden></span>
+        </p>
+
+        <label class="marcar">
+          <input type="checkbox" name="moraSozinha" checked>
+          <span>Mora sozinha<br><span class="apoio">Se mora acompanhada, o check-in diario continua valendo, mas a escalada e mais lenta.</span></span>
+        </label>
+      </section>
+
+      <!-- ======== ETAPA 2 ======== -->
+      <section class="etapa" data-etapa="2" aria-labelledby="t-e2" hidden>
+        <h2 id="t-e2" tabindex="-1">Saude e rotina</h2>
+
+        <fieldset>
+          <legend>Condicoes de saude relatadas</legend>
+          <p class="campo__dica">Marque o que a pessoa contar. Isso entra no calculo do nivel de atencao.</p>
+          <div class="grade grade--2" style="gap:.5rem">
+            <label class="marcar"><input type="checkbox" name="condicoes" value="Hipertensao"><span>Hipertensao</span></label>
+            <label class="marcar"><input type="checkbox" name="condicoes" value="Diabetes"><span>Diabetes</span></label>
+            <label class="marcar"><input type="checkbox" name="condicoes" value="Doenca cardiaca"><span>Doenca cardiaca</span></label>
+            <label class="marcar"><input type="checkbox" name="condicoes" value="Baixa visao"><span>Baixa visao</span></label>
+            <label class="marcar"><input type="checkbox" name="condicoes" value="Alzheimer ou demencia"><span>Alzheimer ou demencia</span></label>
+            <label class="marcar"><input type="checkbox" name="condicoes" value="Depressao"><span>Depressao</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Mobilidade</legend>
+          <div class="grade grade--2" style="gap:.5rem">
+            <label class="marcar"><input type="radio" name="mobilidade" value="boa" checked><span>Anda sem ajuda</span></label>
+            <label class="marcar"><input type="radio" name="mobilidade" value="reduzida"><span>Mobilidade reduzida</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Janela do check-in diario</legend>
+          <p class="campo__dica">
+            Combine com a pessoa o periodo em que ela costuma estar acordada e com o celular
+            por perto. Passado o horario final sem confirmacao, a rede de apoio e avisada.
+          </p>
+          <div class="grade grade--2">
+            <p class="campo">
+              <label class="campo__rotulo" for="c-inicio">Comeca as</label>
+              <input id="c-inicio" name="janelaInicio" type="time" value="07:00" required>
+            </p>
+            <p class="campo">
+              <label class="campo__rotulo" for="c-fim">Termina as</label>
+              <input id="c-fim" name="janelaFim" type="time" value="11:00" required aria-describedby="c-fim-erro">
+              <span class="campo__erro" id="c-fim-erro" hidden></span>
+            </p>
+          </div>
+        </fieldset>
+
+        <p class="campo" style="margin-bottom:0">
+          <label class="campo__rotulo" for="c-obs">Observacoes para quem for ate la</label>
+          <span class="campo__dica" id="c-obs-dica">Ex.: campainha com defeito, escada na entrada, chave com a vizinha do 20.</span>
+          <textarea id="c-obs" name="observacoes" aria-describedby="c-obs-dica"></textarea>
+        </p>
+      </section>
+
+      <!-- ======== ETAPA 3 ======== -->
+      <section class="etapa" data-etapa="3" aria-labelledby="t-e3" hidden>
+        <h2 id="t-e3" tabindex="-1">Rede de apoio</h2>
+        <p class="apoio">
+          Sao as pessoas avisadas quando o check-in nao acontece. Quanto mais perto moram,
+          mais rapido alguem chega. Sem ninguem cadastrado, todo alerta vai direto para a UBS.
+        </p>
+
+        <div id="rede"></div>
+
+        <button class="botao botao--secundario" type="button" id="btn-add-rede">
+          <svg aria-hidden="true"><use href="#i-mais"></use></svg> Adicionar pessoa a rede
+        </button>
+
+        <div class="nota nota--info" style="margin-top:1.2rem">
+          <svg aria-hidden="true"><use href="#i-info"></use></svg>
+          <p>
+            <strong>Consentimento</strong>
+            Cada pessoa da rede recebe um convite no app e escolhe aceitar. Nada e compartilhado
+            antes disso.
+          </p>
+        </div>
+      </section>
+
+      <!-- ======== ETAPA 4 ======== -->
+      <section class="etapa" data-etapa="4" aria-labelledby="t-e4" hidden>
+        <h2 id="t-e4" tabindex="-1">Conferir antes de salvar</h2>
+        <p class="apoio">Leia em voz alta para a pessoa confirmar. Qualquer item pode ser corrigido.</p>
+        <div id="revisao"></div>
+      </section>
+
+      <!-- Navegacao entre etapas -->
+      <div class="etapa__navegacao">
+        <button class="botao botao--fantasma" type="button" id="btn-voltar" hidden>Voltar</button>
+        <button class="botao" type="button" id="btn-avancar">
+          Continuar <svg aria-hidden="true"><use href="#i-seta-direita"></use></svg>
+        </button>
+        <button class="botao" type="submit" id="btn-salvar" hidden>
+          <svg aria-hidden="true"><use href="#i-check"></use></svg> Salvar cadastro
+        </button>
+      </div>
+    </form>
+
+    <div id="final" hidden></div>
+  </div>
+</main>
+
+<footer class="rodape">
+  <div class="envelope">
+    <p>Perto &middot; Global Solution CitizenTech &middot; FIAP. Dados ficticios de demonstracao.</p>
+    <p><a href="painel.html">Voltar ao painel</a></p>
+  </div>
+</footer>
+
+<script type="module" src="js/cadastro.js"></script>
+</body>
+</html>

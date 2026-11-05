@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel do territorio - Perto</title>
+<meta name="description" content="Fila de triagem em tempo real, mapa do territorio, cadastro da rede de apoio e avisos do bairro para a equipe da UBS.">
+<meta name="theme-color" content="#0f6b63">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Nunito+Sans:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/publico.css">
+<link rel="stylesheet" href="css/painel.css">
+<script src="js/config.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+</head>
+<body>
+
+<a class="pular-para-conteudo" href="#conteudo">Pular para o conteudo</a>
+
+<header class="topo">
+  <div class="envelope topo__interno">
+    <a class="marca" href="./" aria-label="Perto - pagina inicial">
+      <span class="marca__selo" aria-hidden="true"><svg><use href="#i-perto"></use></svg></span>
+      <span>Perto<small>painel do territorio</small></span>
+    </a>
+    <nav class="topo__nav" aria-label="Navegacao principal">
+      <a class="topo__link" href="./">Inicio</a>
+      <a class="topo__link" href="como-funciona.html">Como funciona</a>
+      <a class="topo__link" href="painel.html" aria-current="page">Painel do territorio</a>
+      <a class="topo__link" href="cadastro.html">Cadastrar pessoa</a>
+      <div class="a11y" role="group" aria-label="Acessibilidade">
+        <button class="a11y__botao" type="button" data-a11y="diminuir" aria-label="Diminuir o tamanho do texto">
+          <svg aria-hidden="true"><use href="#i-menos"></use></svg>
+        </button>
+        <button class="a11y__botao" type="button" data-a11y="aumentar" aria-label="Aumentar o tamanho do texto">
+          A<svg aria-hidden="true" style="width:14px;height:14px"><use href="#i-mais"></use></svg>
+        </button>
+        <button class="a11y__botao" type="button" data-a11y="contraste" aria-pressed="false" aria-label="Alternar alto contraste">
+          <svg aria-hidden="true"><use href="#i-contraste"></use></svg>
+        </button>
+        <button class="a11y__botao" type="button" data-a11y="movimento" aria-pressed="false" aria-label="Reduzir animacoes">
+          <svg aria-hidden="true"><use href="#i-movimento"></use></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo" class="painel">
+  <div class="envelope">
+
+    <!-- Estado da conexao: nunca escondido do usuario -->
+    <div class="faixa-demo" id="faixa-demo" hidden>
+      <svg aria-hidden="true"><use href="#i-sem-sinal"></use></svg>
+      <p>
+        <strong>Modo demonstracao</strong>
+        Nenhum servidor da API respondeu, entao o painel esta usando o retrato de exemplo.
+        As acoes funcionam, mas ficam so neste navegador e nao chegam ao app.
+        Para ligar a integracao real, rode <code>npm start</code> na pasta <code>server/</code>
+        ou informe a URL da API em <code>web/js/config.js</code>.
+      </p>
+    </div>
+
+    <div class="painel__cabeca">
+      <div>
+        <p class="cartao__rotulo">UBS Sacoma</p>
+        <h1>Painel do territorio</h1>
+        <p class="painel__local" id="painel-local">Microarea 3 &middot; Sacoma, Sao Paulo</p>
+      </div>
+      <div class="linha">
+        <p class="pulso-vivo" id="estado-conexao" role="status">
+          <span class="pulso-vivo__ponto" aria-hidden="true"></span>
+          <span id="estado-conexao-texto">Conectando...</span>
+        </p>
+        <p class="quem">
+          <span class="quem__inicial" aria-hidden="true">C</span>
+          <span><strong>Cleo Martins</strong><span>Agente comunitaria de saude</span></span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Indicadores -->
+    <section class="kpis" aria-label="Indicadores do territorio">
+      <div class="kpi kpi--ok">
+        <p class="cartao__rotulo">Acompanhadas</p>
+        <p class="kpi__valor esqueleto" data-kpi="pessoasMonitoradas">0</p>
+        <p class="kpi__nota">pessoas na rede</p>
+      </div>
+      <div class="kpi kpi--ok">
+        <p class="cartao__rotulo">Check-in hoje</p>
+        <p class="kpi__valor esqueleto" data-kpi="coberturaHoje" data-sufixo="%">0</p>
+        <p class="kpi__nota" id="kpi-checkin-nota">--</p>
+      </div>
+      <div class="kpi kpi--atencao">
+        <p class="cartao__rotulo">Alertas abertos</p>
+        <p class="kpi__valor esqueleto" data-kpi="alertasAbertos">0</p>
+        <p class="kpi__nota">aguardando alguem</p>
+      </div>
+      <div class="kpi kpi--critico">
+        <p class="cartao__rotulo">Criticos</p>
+        <p class="kpi__valor esqueleto" data-kpi="alertasCriticos">0</p>
+        <p class="kpi__nota">escalados para a UBS</p>
+      </div>
+      <div class="kpi">
+        <p class="cartao__rotulo">Pedidos de ajuda</p>
+        <p class="kpi__valor esqueleto" data-kpi="pedidosAbertos">0</p>
+        <p class="kpi__nota">remedio, mercado, companhia</p>
+      </div>
+    </section>
+
+    <!-- Abas -->
+    <div class="painel__abas" role="tablist" aria-label="Secoes do painel">
+      <button class="aba" role="tab" id="aba-agora" aria-controls="p-agora" aria-selected="true" type="button">
+        <svg aria-hidden="true"><use href="#i-sino"></use></svg> Agora
+        <span class="aba__contagem" id="contagem-fila" hidden>0</span>
+      </button>
+      <button class="aba" role="tab" id="aba-pessoas" aria-controls="p-pessoas" aria-selected="false" tabindex="-1" type="button">
+        <svg aria-hidden="true"><use href="#i-pessoas"></use></svg> Pessoas
+      </button>
+      <button class="aba" role="tab" id="aba-avisos" aria-controls="p-avisos" aria-selected="false" tabindex="-1" type="button">
+        <svg aria-hidden="true"><use href="#i-sol"></use></svg> Avisos do bairro
+      </button>
+      <button class="aba" role="tab" id="aba-relatorio" aria-controls="p-relatorio" aria-selected="false" tabindex="-1" type="button">
+        <svg aria-hidden="true"><use href="#i-grafico"></use></svg> Relatorio
+      </button>
+    </div>
+
+    <!-- ================= AGORA ================= -->
+    <section class="agora" role="tabpanel" id="p-agora" aria-labelledby="aba-agora" tabindex="0">
+      <div>
+        <div class="bloco__titulo">
+          <h2>Fila de triagem</h2>
+          <p>Ordenada por gravidade e tempo de espera. Atualiza sozinha.</p>
+        </div>
+        <ul class="fila" id="fila">
+          <li class="cartao esqueleto" style="height:9rem"></li>
+          <li class="cartao esqueleto" style="height:9rem"></li>
+        </ul>
+
+        <div class="bloco__titulo" style="margin-top:2rem">
+          <h2>Pedidos de ajuda abertos</h2>
+          <p>Vindos do app, do dia a dia de quem mora sozinho.</p>
+        </div>
+        <ul class="pedidos" id="pedidos">
+          <li class="cartao esqueleto" style="height:5rem"></li>
+        </ul>
+      </div>
+
+      <aside class="mapa-caixa" aria-labelledby="t-mapa">
+        <div class="bloco__titulo">
+          <h2 id="t-mapa">Mapa do territorio</h2>
+          <p>Cada ponto e um domicilio acompanhado.</p>
+        </div>
+        <div class="mapa" id="mapa" role="application" tabindex="0"
+             aria-label="Mapa do territorio com os domicilios acompanhados. A mesma informacao esta na aba Pessoas, em lista."></div>
+        <ul class="legenda">
+          <li><i class="l-alto" aria-hidden="true"></i> Atencao alta</li>
+          <li><i class="l-medio" aria-hidden="true"></i> Atencao media</li>
+          <li><i class="l-baixo" aria-hidden="true"></i> Atencao baixa</li>
+        </ul>
+        <p class="apoio" style="margin-top:.6rem">
+          O mapa e um apoio visual. Toda a informacao dele tambem esta em texto na aba
+          <strong>Pessoas</strong>, navegavel por teclado e leitor de tela.
+        </p>
+
+        <div class="cartao" style="margin-top:1.2rem">
+          <h3 style="font-size:1rem">Proximas visitas</h3>
+          <ul class="avisos" id="visitas">
+            <li class="esqueleto" style="height:3rem"></li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ================= PESSOAS ================= -->
+    <section role="tabpanel" id="p-pessoas" aria-labelledby="aba-pessoas" tabindex="0" hidden>
+      <div class="filtros">
+        <p class="campo filtros__busca">
+          <label class="campo__rotulo" for="busca">Buscar pessoa</label>
+          <svg aria-hidden="true"><use href="#i-busca"></use></svg>
+          <input id="busca" type="search" placeholder="Nome ou endereco" autocomplete="off">
+        </p>
+        <p class="campo">
+          <label class="campo__rotulo" for="filtro-risco">Nivel de atencao</label>
+          <select id="filtro-risco">
+            <option value="">Todos</option>
+            <option value="alto">Alto</option>
+            <option value="medio">Medio</option>
+            <option value="baixo">Baixo</option>
+          </select>
+        </p>
+        <p class="campo">
+          <label class="campo__rotulo" for="filtro-status">Check-in de hoje</label>
+          <select id="filtro-status">
+            <option value="">Todos</option>
+            <option value="ok">Confirmado</option>
+            <option value="sem_checkin">Sem check-in</option>
+            <option value="na_janela">Dentro do horario</option>
+          </select>
+        </p>
+        <a class="botao botao--secundario" href="cadastro.html">
+          <svg aria-hidden="true"><use href="#i-mais"></use></svg> Cadastrar pessoa
+        </a>
+      </div>
+      <p class="apoio" id="resumo-pessoas" role="status">Carregando...</p>
+      <ul class="pessoas" id="pessoas">
+        <li class="cartao esqueleto" style="height:11rem"></li>
+        <li class="cartao esqueleto" style="height:11rem"></li>
+        <li class="cartao esqueleto" style="height:11rem"></li>
+      </ul>
+    </section>
+
+    <!-- ================= AVISOS ================= -->
+    <section role="tabpanel" id="p-avisos" aria-labelledby="aba-avisos" tabindex="0" hidden>
+      <div class="avisos-grade">
+        <form class="cartao" id="form-aviso" novalidate>
+          <h2 style="font-size:1.2rem">Publicar aviso para o bairro</h2>
+          <p class="apoio">
+            O aviso aparece na pagina publica e como um banner no topo do app de todas as
+            pessoas do territorio.
+          </p>
+
+          <p class="campo">
+            <label class="campo__rotulo" for="av-titulo">Titulo <span class="obrigatorio">(obrigatorio)</span></label>
+            <input id="av-titulo" name="titulo" type="text" required maxlength="60" aria-describedby="av-titulo-erro">
+            <span class="campo__erro" id="av-titulo-erro" hidden></span>
+          </p>
+
+          <p class="campo">
+            <label class="campo__rotulo" for="av-texto">Mensagem <span class="obrigatorio">(obrigatorio)</span></label>
+            <span class="campo__dica" id="av-texto-dica">Frases curtas e diretas. Diga o que fazer, nao so o que esta acontecendo.</span>
+            <textarea id="av-texto" name="texto" required maxlength="320" aria-describedby="av-texto-dica av-texto-erro"></textarea>
+            <span class="campo__erro" id="av-texto-erro" hidden></span>
+          </p>
+
+          <fieldset>
+            <legend>Nivel do aviso</legend>
+            <div class="grade grade--3" style="gap:.5rem">
+              <label class="marcar"><input type="radio" name="nivel" value="info" checked><span>Informativo</span></label>
+              <label class="marcar"><input type="radio" name="nivel" value="atencao"><span>Atencao</span></label>
+              <label class="marcar"><input type="radio" name="nivel" value="critico"><span>Critico</span></label>
+            </div>
+          </fieldset>
+
+          <button class="botao botao--largo" type="submit">
+            <svg aria-hidden="true"><use href="#i-sino"></use></svg> Publicar no territorio
+          </button>
+        </form>
+
+        <div>
+          <div class="previa" aria-labelledby="t-previa">
+            <h3 id="t-previa" style="font-size:1rem;margin:0">Previa no app</h3>
+            <p class="apoio" style="margin:.2rem 0 0">Como a pessoa vai ver o aviso no celular.</p>
+            <div class="previa__tela" aria-hidden="true">
+              <div class="aviso aviso--info" id="previa-aviso">
+                <p class="aviso__topo"><span class="aviso__titulo" id="previa-titulo">Titulo do aviso</span></p>
+                <p id="previa-texto">A mensagem aparece aqui, do jeito que a pessoa vai ler no app.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bloco__titulo" style="margin-top:1.5rem">
+            <h2 style="font-size:1.2rem">Avisos publicados</h2>
+          </div>
+          <ul class="avisos" id="lista-avisos">
+            <li class="esqueleto" style="height:4rem"></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RELATORIO ================= -->
+    <section role="tabpanel" id="p-relatorio" aria-labelledby="aba-relatorio" tabindex="0" hidden>
+      <div class="bloco__titulo">
+        <h2>Relatorio do territorio</h2>
+        <div class="linha">
+          <button class="botao botao--secundario botao--pequeno" type="button" id="btn-csv">
+            <svg aria-hidden="true"><use href="#i-baixar"></use></svg> Baixar CSV
+          </button>
+          <button class="botao botao--fantasma botao--pequeno" type="button" id="btn-imprimir">Imprimir</button>
+        </div>
+      </div>
+
+      <div class="grade grade--2">
+        <div class="cartao">
+          <h3>Check-ins dos ultimos 7 dias</h3>
+          <p class="apoio">Quantas pessoas confirmaram que estavam bem em cada dia.</p>
+          <svg class="grafico" id="grafico-semana" viewBox="0 0 440 210" role="img" aria-labelledby="t-grafico">
+            <title id="t-grafico">Grafico de barras com os check-ins dos ultimos sete dias</title>
+          </svg>
+          <p class="so-leitor" id="grafico-texto"></p>
+        </div>
+        <div class="cartao">
+          <h3>Resposta da rede</h3>
+          <dl class="dados" id="dados-relatorio">
+            <dt class="esqueleto">...</dt><dd class="esqueleto">...</dd>
+          </dl>
+          <div class="nota nota--ok" style="margin-top:1rem">
+            <svg aria-hidden="true"><use href="#i-escudo"></use></svg>
+            <p>
+              <strong>Por que medir isto</strong>
+              Quanto mais casos a rede de apoio resolve sozinha, menor a fila da UBS e mais
+              rapido alguem chega a quem precisa.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cartao" style="margin-top:1.5rem;overflow-x:auto">
+        <table class="tabela" id="tabela-pessoas">
+          <caption>Pessoas acompanhadas na microarea 3</caption>
+          <thead>
+            <tr>
+              <th scope="col">Pessoa</th>
+              <th scope="col">Idade</th>
+              <th scope="col">Nivel de atencao</th>
+              <th scope="col">Check-in de hoje</th>
+              <th scope="col">Rede de apoio</th>
+              <th scope="col">Ultimo contato</th>
+            </tr>
+          </thead>
+          <tbody><tr><td colspan="6" class="esqueleto">Carregando</td></tr></tbody>
+        </table>
+      </div>
+
+      <div class="cartao" style="margin-top:1.5rem">
+        <h3>Ferramentas de demonstracao</h3>
+        <p class="apoio">
+          Para a banca e para a gravacao do video: criam ou apagam dados de exemplo.
+          Em producao estes botoes nao existem.
+        </p>
+        <div class="linha">
+          <button class="botao botao--secundario botao--pequeno" type="button" id="btn-simular">
+            <svg aria-hidden="true"><use href="#i-raio"></use></svg> Simular alerta de ausencia
+          </button>
+          <button class="botao botao--fantasma botao--pequeno" type="button" id="btn-reset">
+            Recomecar dados de exemplo
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Gaveta de detalhe da pessoa -->
+<dialog class="gaveta" id="gaveta" aria-labelledby="gaveta-titulo">
+  <div class="gaveta__interno">
+    <div class="gaveta__topo">
+      <div>
+        <h2 id="gaveta-titulo">Pessoa</h2>
+        <p id="gaveta-sub"></p>
+      </div>
+      <button class="gaveta__fechar" type="button" id="gaveta-fechar" aria-label="Fechar detalhe da pessoa">
+        <svg aria-hidden="true"><use href="#i-fechar"></use></svg>
+      </button>
+    </div>
+    <div class="gaveta__corpo" id="gaveta-corpo"></div>
+  </div>
+</dialog>
+
+<!-- Caixa de dialogo generica (resolver caso, agendar visita) -->
+<dialog class="janela" id="janela" aria-labelledby="janela-titulo">
+  <form method="dialog" class="janela__corpo" id="janela-form">
+    <h2 id="janela-titulo">Confirmar</h2>
+    <div id="janela-corpo"></div>
+    <div class="linha" style="margin-top:1.2rem;justify-content:flex-end">
+      <button class="botao botao--fantasma" value="cancelar" formnovalidate>Cancelar</button>
+      <button class="botao" value="confirmar" id="janela-confirmar">Confirmar</button>
+    </div>
+  </form>
+</dialog>
+
+<footer class="rodape">
+  <div class="envelope">
+    <p>Perto &middot; Global Solution CitizenTech &middot; FIAP. Dados ficticios de demonstracao.</p>
+    <p><a href="./">Pagina publica</a> &middot; <a href="como-funciona.html">Como funciona</a></p>
+  </div>
+</footer>
+
+<script type="module" src="js/painel.js"></script>
+</body>
+</html>
